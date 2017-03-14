@@ -1,3 +1,7 @@
+appdirs==1.4.3
 Django==1.10.5
 modulegraph==0.10.4
 oauthlib==2.0.1
+packaging==16.8
+pyparsing==2.2.0
+six==1.10.0
