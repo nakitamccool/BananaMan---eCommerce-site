@@ -4,4 +4,4 @@ from django.apps import AppConfig
 
 
 class SiteConfig(AppConfig):
-    name = 'src.Site'
+    name = 'src.Products'
