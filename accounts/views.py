@@ -1,5 +1,5 @@
 from django.contrib import messages, auth
-from accounts.forms import UserLoginForm
+from accounts.forms import UserLoginForm, UserRegistrationForm
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.template.context_processors import csrf
@@ -47,4 +47,40 @@ def logout(request):
     auth.logout(request)
     messages.success(request, 'You have successfully logged out')
     return redirect(reverse('index'))
+
+def register(request):
+    if request.method == 'POST':
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            #do an early save so that if user input is invalid/ unauthorised new form can be loaded with valide details previously entered
+            form.save()
+
+            #user has a valid username and password, if not a user then we will drop out of this code and reload form on line X
+    #else:
+        #form= UserRegistrationForm()
+            user = auth.authenticate(username=request.POST.get('username'),
+                                     password=request.POST.get('password1'))
+
+            #if valid user, then return success msg and redirect to profile. Else provide error msg.
+            if user:
+                auth.login(request, user)
+                messages.success(request, "You have successfully registered and are now logged into your account")
+                return redirect(reverse('profile'))
+
+            else:
+                messages.error(request, "Unable to log you in at this time.")
+
+    else:
+        form = UserRegistrationForm()
+
+    args = {'form': form}
+    args.update(csrf(request))
+
+
+    return render(request, 'register.html', args)
+
+
+
+
+
 

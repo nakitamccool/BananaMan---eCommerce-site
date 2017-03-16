@@ -18,11 +18,13 @@ from django.contrib import admin
 from django.views.static import serve
 from Products import urls as products_urls
 from accounts import urls as accounts_urls
+from payments import urls as payments_urls
 from BananaManECom.settings import MEDIA_ROOT
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'', include(products_urls)),
     url(r'^accounts', include(accounts_urls)),
+    url(r'^payments', include(payments_urls)),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT}),
 ]

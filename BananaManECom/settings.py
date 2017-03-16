@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'Products',
     'accounts',
     'django_forms_bootstrap',
+    'payments',
 ]
 
 MIDDLEWARE = [
@@ -128,3 +129,6 @@ STATIC_URL = '/static/'
 # STATICFILES_LOCATION = 'static'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+STRIPE_PUBLISHABLE = os.getenv('STRIPE_PUBLISHABLE_KEY')
+STRIPE_SECRET = os.getenv('STRIPE_SECRET_KEY')
