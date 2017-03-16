@@ -16,11 +16,13 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.views.static import serve
+from Products import urls as products_urls
+from accounts import urls as accounts_urls
 from BananaManECom.settings import MEDIA_ROOT
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'', include('Products.urls')),
-    url(r'^accounts', include('accounts.urls')),
+    url(r'', include(products_urls)),
+    url(r'^accounts', include(accounts_urls)),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT}),
 ]

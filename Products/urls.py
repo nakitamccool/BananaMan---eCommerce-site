@@ -1,4 +1,4 @@
-from views import index, all_products
+from views import all_products, index
 from django.conf.urls import url
 
 
