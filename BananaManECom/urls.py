@@ -15,9 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from .settings import MEDIA_ROOT
+from django.views.static import serve
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', include('Products.urls')),
+    url(r'', include('Products.urls')),
+    url(r'^media/$', serve, {'document_root': MEDIA_ROOT})
 ]

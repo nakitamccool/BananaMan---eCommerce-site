@@ -1,6 +1,4 @@
 .idea
 *.pyc
 src/BananaManECom/db.sqlite3
-env.py
-env.pu
-env.py
+
